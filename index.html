@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreshStack — Platform Learning Path</title>
+  <meta name="description" content="CEO Bot platform learning path for Lara and Bap. 30-day v1 sprint." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain-overlay"></div>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-label">// FRESHSTACK · INTERNAL</div>
+      <h1 class="header-title">Platform Learning Path</h1>
+      <p class="header-sub">30-day sprint to v1 CEO Command Bot. Shared foundation, builder track, commercial track.</p>
+
+      <div class="header-stats">
+        <div class="stat">
+          <div class="stat-label">// OVERALL PROGRESS</div>
+          <div class="stat-bar">
+            <div class="stat-bar-fill" id="overall-progress-bar"></div>
+          </div>
+          <div class="stat-value" id="overall-progress-value">0%</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sprint meta banner -->
+  <section class="sprint-banner">
+    <div class="container">
+      <div class="sprint-header">
+        <div class="sprint-label">// 30-DAY SPRINT</div>
+        <h2 class="sprint-title">v1 CEO Command Bot — built on FreshStack's own stack</h2>
+      </div>
+
+      <div class="sprint-grid">
+        <div class="sprint-block">
+          <div class="sprint-block-label">// CAPACITY</div>
+          <div class="sprint-block-body">
+            <p><strong>Lara</strong> · full-time (~8h/day)</p>
+            <p><strong>Bap</strong> · half-time (~4h/day — Stratosphere in parallel)</p>
+          </div>
+        </div>
+
+        <div class="sprint-block">
+          <div class="sprint-block-label">// LOCKED DECISIONS</div>
+          <div class="sprint-block-body" id="sprint-decisions"></div>
+        </div>
+
+        <div class="sprint-block">
+          <div class="sprint-block-label">// 5 V1 INTENTS — LOCKED DAY 10</div>
+          <div class="sprint-block-body" id="sprint-intents"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="track-filter">
+    <div class="container">
+      <div class="filter-group">
+        <div class="filter-label">// VIEW</div>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All tracks</button>
+          <button class="filter-btn" data-filter="shared">Shared foundation</button>
+          <button class="filter-btn" data-filter="lara">Lara · Builder</button>
+          <button class="filter-btn" data-filter="bap">Bap · Commercial</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">// WEEK</div>
+        <div class="filter-buttons">
+          <button class="week-btn active" data-week="all">All</button>
+          <button class="week-btn" data-week="1">W1</button>
+          <button class="week-btn" data-week="2">W2</button>
+          <button class="week-btn" data-week="3">W3</button>
+          <button class="week-btn" data-week="4">W4</button>
+          <button class="week-btn" data-week="0">Post-launch</button>
+        </div>
+      </div>
+      <div class="filter-meta">
+        <label class="sprint-toggle">
+          <input type="checkbox" id="sprint-only-toggle" />
+          <span>Sprint-essential only</span>
+        </label>
+        <button class="reset-btn" id="reset-progress">Reset progress</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <section class="intro-section">
+      <div class="intro-card">
+        <div class="intro-label">// WHY THIS EXISTS</div>
+        <p>The old learning path was generalist SMB automation. This one is narrower, deeper, and built around the decision that FreshStack is a <strong>platform business</strong> — not a project shop. Every module ties to the CEO Bot orchestration engine and the productised services that will sit on top of it.</p>
+        <p>The filter every module is tested against: <em>"what skills do Lara and Bap need to ship, operate, sell, and scope the shared orchestration platform — without subcontracting the hard parts or relearning basics mid-build?"</em></p>
+        <p class="intro-note"><strong>Sprint mode:</strong> modules tagged <span class="sprint-tag">SPRINT</span> are essential for the 30-day v1 build. Anything not tagged is post-launch (month 2-3) and shown here so you don't forget it exists.</p>
+      </div>
+    </section>
+
+    <section class="track-section" data-track="shared">
+      <div class="track-header">
+        <div class="track-label">// PART 0</div>
+        <h2 class="track-title">Shared Foundation</h2>
+        <p class="track-desc">Both founders complete this before diverging into tracks. If one of you skips this, both of you sell blind in month 2.</p>
+        <div class="track-progress">
+          <span class="progress-text" id="shared-progress-text">0 of 0 complete</span>
+          <div class="progress-bar"><div class="progress-fill" id="shared-progress-fill"></div></div>
+        </div>
+      </div>
+      <div class="modules" id="shared-modules"></div>
+    </section>
+
+    <section class="track-section" data-track="lara">
+      <div class="track-header lara-track">
+        <div class="track-label">// PART 1 · LARA</div>
+        <h2 class="track-title">Builder Track</h2>
+        <p class="track-desc">Learn by building. Each phase maps to a week of the v1 sprint. Phase 5 is what you explicitly defer to month 2-3.</p>
+        <div class="track-progress">
+          <span class="progress-text" id="lara-progress-text">0 of 0 complete</span>
+          <div class="progress-bar"><div class="progress-fill" id="lara-progress-fill"></div></div>
+        </div>
+      </div>
+      <div class="modules" id="lara-modules"></div>
+    </section>
+
+    <section class="track-section" data-track="bap">
+      <div class="track-header bap-track">
+        <div class="track-label">// PART 2 · BAP</div>
+        <h2 class="track-title">Commercial Track</h2>
+        <p class="track-desc">Shadow Lara's build in week 1. Prepare month 2 outreach through weeks 2-4. Day 31 the switch flips with zero transition cost.</p>
+        <div class="track-progress">
+          <span class="progress-text" id="bap-progress-text">0 of 0 complete</span>
+          <div class="progress-bar"><div class="progress-fill" id="bap-progress-fill"></div></div>
+        </div>
+      </div>
+      <div class="modules" id="bap-modules"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-label">// NOTE</div>
+      <p>Progress is stored in your browser (localStorage). Your progress and Bap's progress are tracked separately on your own devices. Clearing browser data resets progress.</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
