@@ -235,6 +235,18 @@ const LEARNING_PATH = {
             exercise: "Scaffolded (empty) skill files: typescript-orchestration.md, supabase-multi-tenant.md, slack-bot-handlers.md, oauth-flows.md, claude-api-tool-use.md, error-handling.md, mcp-integration.md. Each gets populated as you hit that area of the build."
           },
           {
+            id: "l0-2b",
+            title: "Brand-context folder — FreshStack's single business brain",
+            desc: "Scaffold `brand-context/` alongside `skills/`. Every CEO Bot skill references these files so outputs are on-brand by default. Update once, every skill benefits. Content consolidated from existing sources (Strategy doc, Canva brand guidelines, Service Catalogue, R3ACH/Stratosphere retros) — don't rewrite, pull together.",
+            hours: 2, week: 1, sprintEssential: true,
+            resources: [
+              { type: "INTERNAL", label: "Strategy doc (ICP, positioning)", url: "https://www.notion.so/33bd7fcf5f04816db5f7feb4f9feff1c" },
+              { type: "INTERNAL", label: "Brand guidelines Canva (design ID DAGsRWAgoq8)", url: "#" },
+              { type: "INTERNAL", label: "Service Catalogue", url: "https://www.notion.so/32bd7fcf5f04818ea40ac7c33a3104cf" }
+            ],
+            exercise: "Six files populated: company.md (what we sell / don't sell), voice-profile.md (plain English, no corporate fluff, no em dashes), icp.md (10-200 staff, 6 verticals), positioning.md (moat sentence + 3 competitor responses), team.md (Lara COO, Bap CRO), clients.md (R3ACH/Stratosphere lessons, Philex qualify-out). Verify: every v1 skill written later MUST reference these — not duplicate the content inline."
+          },
+          {
             id: "l0-3",
             title: "Prompting Claude Code — the tech-lead pattern",
             desc: "Different from chat prompting. Tech-lead prompts specify: what to build, what NOT to build (constraints), quality bar (tests, error handling), and review criteria. Vague prompts produce vague code that sort-of works and breaks later.",
@@ -396,7 +408,7 @@ const LEARNING_PATH = {
               { type: "DOCS", label: "Anthropic — Prompt engineering overview", url: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" },
               { type: "DOCS", label: "Use XML tags to structure prompts", url: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags" }
             ],
-            exercise: "Each of the 5 intents has a system prompt written by Lara. Tested 3-5 times with real FreshStack data. Version them — keep old prompts when you change them."
+            exercise: "Each of the 5 intents has a system prompt written by Lara. Every prompt REFERENCES `brand-context/` files for voice, positioning, and client context — does NOT copy their content inline. Tested 3-5 times with real FreshStack data. Version them — keep old prompts when you change them."
           }
         ]
       },
@@ -449,7 +461,7 @@ const LEARNING_PATH = {
             resources: [
               { type: "DOCS", label: "Anthropic — prompt engineering overview", url: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" }
             ],
-            exercise: "Each intent now handles 10+ realistic variations of input consistently. Note the ones that still fail — they go into the eval set in L3-5."
+            exercise: "Each intent now handles 10+ realistic variations of input consistently. Verify every system prompt REFERENCES `brand-context/` files (e.g. 'Refer to brand-context/voice-profile.md for tone') rather than duplicating the content inline. Inline duplication kills the propagation benefit and means every brand update = editing 7 prompts. Note intents that still fail — they go into the eval set in L3-5."
           },
           {
             id: "l3-5",
