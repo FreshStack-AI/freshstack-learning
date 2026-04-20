@@ -1,20 +1,22 @@
 // ============================================================
 // FRESHSTACK PLATFORM LEARNING PATH
 // 30-day V1 sprint mode + long-term reference
-// Each module: id, title, desc, week, hours, sprintEssential, resources, exercise
+// Build approach: Claude Code is the primary code-writing tool.
+// Lara directs, reviews, tests, judges. Bap shadows and sells.
 // ============================================================
 
 const SPRINT_META = {
   deadline: "30 days",
   goal: "v1 CEO Command Bot built on FreshStack's own stack — ready for month 2 outreach",
-  laraCapacity: "Full-time (~8h/day)",
+  laraCapacity: "Full-time (~8h/day) · directing Claude Code + reviewing + testing",
   bapCapacity: "Half-time (~4h/day — Stratosphere in parallel)",
   decisions: [
     "FreshStack is its own first client (own data, own demo footage)",
     "Slack as the v1 messaging platform",
     "5 intents locked by day 10 — no additions in weeks 2-4",
     "Sonnet 4.5 for all intents (multi-model routing deferred to month 3)",
-    "No custom MCP servers in v1 — use Notion's existing MCP + REST for others"
+    "No custom MCP servers in v1 — use Notion's existing MCP + REST for others",
+    "Claude Code is the primary build tool — Lara is tech lead, not solo developer"
   ],
   v1Intents: [
     "Pipeline query (Notion CRM)",
@@ -204,204 +206,293 @@ const LEARNING_PATH = {
   lara: {
     phases: [
       {
+        id: "l0",
+        label: "// PHASE L0",
+        title: "Claude Code as primary build tool — discipline before speed",
+        time: "Days 1-3 · ~15 hours",
+        week: 1,
+        objective: "Before writing a line of CEO Bot code, learn to direct Claude Code like a tech lead directs a senior developer. The productivity gain is huge — but only if you review output rigorously. 'AI wrote it, ship it' is how you end up with a v1 that breaks in production and you can't debug.",
+        modules: [
+          {
+            id: "l0-1",
+            title: "Set up the ceo-bot repo with CLAUDE.md scaffolding",
+            desc: "New private repo `freshstack-ai/ceo-bot`. Root `CLAUDE.md` with architecture overview, coding conventions, what NOT to build in v1, and the handover discipline you already use. This is the memory Claude Code reads on every session.",
+            hours: 3, week: 1, sprintEssential: true,
+            resources: [
+              { type: "DOCS", label: "Claude Code — CLAUDE.md best practices", url: "https://docs.claude.com/en/docs/claude-code/memory" },
+              { type: "INTERNAL", label: "FreshStack existing CLAUDE.md pattern (freshstack-claude repo)", url: "#" }
+            ],
+            exercise: "Root CLAUDE.md committed. Covers: architecture, stack decisions (TS, Railway, Supabase, Slack), what's in v1 scope, what's deferred, coding standards (file size limits, test requirements, no secrets in code)."
+          },
+          {
+            id: "l0-2",
+            title: "Skills folder — reusable context for Claude Code",
+            desc: "Scaffold `skills/` with one markdown file per major build domain. Each skill file captures the patterns, libraries, and gotchas for that area. Claude Code reads these on demand to avoid reinventing the wheel every prompt.",
+            hours: 3, week: 1, sprintEssential: true,
+            resources: [
+              { type: "INTERNAL", label: "FreshStack skills pattern (brief.md, handover.md)", url: "#" }
+            ],
+            exercise: "Scaffolded (empty) skill files: typescript-orchestration.md, supabase-multi-tenant.md, slack-bot-handlers.md, oauth-flows.md, claude-api-tool-use.md, error-handling.md, mcp-integration.md. Each gets populated as you hit that area of the build."
+          },
+          {
+            id: "l0-3",
+            title: "Prompting Claude Code — the tech-lead pattern",
+            desc: "Different from chat prompting. Tech-lead prompts specify: what to build, what NOT to build (constraints), quality bar (tests, error handling), and review criteria. Vague prompts produce vague code that sort-of works and breaks later.",
+            hours: 3, week: 1, sprintEssential: true,
+            resources: [
+              { type: "DOCS", label: "Claude Code — effective prompting", url: "https://docs.claude.com/en/docs/claude-code/overview" },
+              { type: "READ", label: "Anthropic — prompt engineering overview", url: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" }
+            ],
+            exercise: "Write 3 example 'tech-lead prompts' for build tasks you'll hit: webhook receiver, OAuth flow, idempotent write handler. Each must specify scope, constraints, test requirements, and review criteria. Use these as templates all sprint."
+          },
+          {
+            id: "l0-4",
+            title: "Code review discipline — catching confident wrongness",
+            desc: "Claude Code is confidently wrong more often than you'd think — especially on security, multi-tenancy, and error handling. Rule: every output is read line-by-line before merging. If you don't understand a line, ask Claude Code to explain before accepting. No shipping what you don't understand.",
+            hours: 3, week: 1, sprintEssential: true,
+            resources: [
+              { type: "READ", label: "Common AI code-generation failure modes", url: "https://www.latent.space/p/ai-engineer" }
+            ],
+            exercise: "Ask Claude Code to implement a dummy OAuth flow. Review line-by-line. Find at least 2 things you'd change or question. Write the review as if commenting on a junior dev's PR. This is the muscle you use all sprint."
+          },
+          {
+            id: "l0-5",
+            title: "Where Claude Code fails — human-only work",
+            desc: "5 things Claude Code shouldn't do alone: (1) define the 5 intents, (2) write production system prompts for your bot, (3) evaluate whether outputs are useful, (4) make ambiguous architectural calls, (5) sign off on security. Know these cold so you don't accidentally delegate them.",
+            hours: 3, week: 1, sprintEssential: true,
+            resources: [],
+            exercise: "Write a one-pager 'Lara-only work' list in CLAUDE.md. Anyone (you, Bap, future hire) reading the repo knows immediately what NOT to delegate to Claude Code."
+          }
+        ]
+      },
+      {
         id: "l1",
         label: "// PHASE L1",
-        title: "Scaffolding — TypeScript + Railway + Supabase + Slack + Claude",
-        time: "Week 1 · ~20 hours",
+        title: "Scaffolding — directing Claude Code to build the foundation",
+        time: "Days 4-7 · ~20 hours",
         week: 1,
-        objective: "Plumbing working end-to-end. Slack message → webhook → orchestration service → Supabase → Claude → back to Slack. No tools yet. Learn by building, not by reading.",
+        objective: "Slack message → webhook → orchestration → Supabase → Claude → Slack. Claude Code writes most of the code. You direct, review, test. By end of week 1 the plumbing works end-to-end.",
         modules: [
           {
             id: "l1-1",
-            title: "TypeScript project + Railway deployment",
-            desc: "Orchestration service as a TypeScript project. Deploy to Railway with a health-check endpoint. Use Claude Code for anything you don't know — your job is to ship, not to master TS academically.",
+            title: "Direct Claude Code to scaffold the TypeScript project + Railway deploy",
+            desc: "Prompt should specify: TypeScript strict mode, Express or Fastify, health-check endpoint, Railway-ready config, .env.example with all required vars documented, .gitignore enforced. Claude Code writes the scaffold; you review; you deploy.",
             hours: 4, week: 1, sprintEssential: true,
             resources: [
               { type: "DOCS", label: "Railway deployment quickstart", url: "https://docs.railway.com/quick-start" },
-              { type: "DOCS", label: "TypeScript handbook (reference)", url: "https://www.typescriptlang.org/docs/handbook/intro.html" }
+              { type: "DOCS", label: "Fastify (fast, simple Node server)", url: "https://fastify.dev/docs/latest/Guides/Getting-Started/" }
             ],
-            exercise: "Health-check endpoint live on Railway. 200 OK with JSON response. Committed to private GitHub repo."
+            exercise: "Health-check endpoint returning 200 OK + JSON. Review: no hardcoded secrets, all config via env, clean folder structure, basic README. Commit with a human-written commit message describing what changed and why."
           },
           {
             id: "l1-2",
-            title: "Supabase schema for v1",
-            desc: "Schema: clients, client_configs, client_credentials, conversation_history, scheduled_tasks. Skip full RLS for now — you're the only tenant. Add RLS in week 3.",
-            hours: 4, week: 1, sprintEssential: true,
+            title: "Direct Claude Code to generate Supabase schema v1",
+            desc: "Prompt: 5 tables (clients, client_configs, client_credentials, conversation_history, scheduled_tasks) with tenant_id column, appropriate indexes, foreign keys. Skip RLS policies for now (week 3 task). Claude Code writes migration SQL; you review; you apply via Supabase dashboard.",
+            hours: 3, week: 1, sprintEssential: true,
             resources: [
-              { type: "DOCS", label: "Supabase getting started", url: "https://supabase.com/docs/guides/getting-started" }
+              { type: "DOCS", label: "Supabase SQL editor", url: "https://supabase.com/docs/guides/database/overview" }
             ],
-            exercise: "Schema deployed. Insert one test row per table via the Supabase UI to verify relationships."
+            exercise: "Migration SQL reviewed. Schema deployed. Manually insert one test row per table. Verify foreign keys are enforced (try an invalid one — it should fail)."
           },
           {
             id: "l1-3",
-            title: "Slack bot setup + webhook receiver",
-            desc: "Create a Slack app, add a bot user, subscribe to message events, point the webhook at your Railway URL. Message to bot → hits service → logs it → posts back 'received'.",
+            title: "Direct Claude Code to build the Slack webhook receiver",
+            desc: "Prompt: Slack signature verification, event dispatcher (handle message.im events only for v1), post-back helper using bot token. Security-sensitive — review carefully. Signature verification is where Claude Code sometimes takes shortcuts.",
             hours: 6, week: 1, sprintEssential: true,
             resources: [
-              { type: "DOCS", label: "Slack — Building your first bot", url: "https://api.slack.com/tutorials/tracks/getting-a-token" },
+              { type: "DOCS", label: "Slack — verifying requests", url: "https://api.slack.com/authentication/verifying-requests-from-slack" },
               { type: "DOCS", label: "Slack events API", url: "https://api.slack.com/apis/events-api" }
             ],
-            exercise: "DM your bot in Slack. See it appear in Railway logs. See the bot reply 'received' in Slack."
+            exercise: "DM bot in Slack → event appears in Railway logs → bot replies 'received'. Test with a deliberately bad signature — it should reject. Populate skills/slack-bot-handlers.md with any gotchas you hit."
           },
           {
             id: "l1-4",
-            title: "Claude API — first tool-less response",
-            desc: "Wire Claude into orchestration. Slack message → Claude API call → response back to Slack. Still no tools — just proving the intelligence layer works.",
-            hours: 6, week: 1, sprintEssential: true,
+            title: "Direct Claude Code to wire Claude API in (tool-less)",
+            desc: "Prompt: Anthropic SDK integration, per-message Claude call, system prompt pulled from Supabase client_configs table. No tools yet. Handle rate limits + timeouts. Claude Code drafts; you review the timeout and retry behaviour specifically.",
+            hours: 4, week: 1, sprintEssential: true,
             resources: [
               { type: "DOCS", label: "Anthropic API getting started", url: "https://docs.claude.com/en/docs/get-started" },
-              { type: "DOCS", label: "Messages API reference", url: "https://docs.claude.com/en/api/messages" }
+              { type: "DOCS", label: "Anthropic TypeScript SDK", url: "https://github.com/anthropics/anthropic-sdk-typescript" }
             ],
-            exercise: "Message the bot 'hello'. Get a real Claude response. Check token usage in the Anthropic console."
+            exercise: "DM 'hello' → real Claude response in Slack. Token usage visible in Anthropic console. Populate skills/claude-api-tool-use.md."
+          },
+          {
+            id: "l1-5",
+            title: "End-of-week review — what Claude Code did vs what you touched",
+            desc: "End of day 7, review every file in the repo. Flag anything you couldn't explain to Bap. Fix those understanding gaps before week 2 — they become 3am incidents in month 2 otherwise.",
+            hours: 3, week: 1, sprintEssential: true,
+            resources: [],
+            exercise: "List every file, mark as 'fully understand' or 'need to revisit'. Nothing stays 'need to revisit' past end of week 1."
           }
         ]
       },
       {
         id: "l2",
         label: "// PHASE L2",
-        title: "Tool integrations — Notion, Calendar, Email",
+        title: "Tool integrations — 5 intents live, confirmation flow working",
         time: "Week 2 · ~40 hours",
         week: 2,
-        objective: "By day 14: all 3 tools connected, 5 intents working, confirmation flow live on at least one write action. This week proves the concept.",
+        objective: "By day 14: 3 tools connected, 5 intents working, confirmation flow live. Claude Code does the integration plumbing. You do the intent design and system prompts — those are not delegatable.",
         modules: [
           {
             id: "l2-1",
-            title: "Notion integration via existing MCP server",
-            desc: "Official Notion MCP server. Connect to FreshStack's Notion. Claude reads from pipeline and task databases. Where MCP stops being abstract.",
-            hours: 8, week: 2, sprintEssential: true,
+            title: "Direct Claude Code to integrate Notion via existing MCP server",
+            desc: "Prompt: connect to the official Notion MCP server, map pipeline + tasks databases to tool definitions, handle the MCP connection lifecycle. You pre-configure which Notion databases to expose — that's the scope decision, not Claude Code's.",
+            hours: 6, week: 2, sprintEssential: true,
             resources: [
               { type: "DOCS", label: "Notion MCP server", url: "https://developers.notion.com/docs/mcp" },
-              { type: "DOCS", label: "Anthropic tool use overview", url: "https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview" }
+              { type: "DOCS", label: "Anthropic tool use with MCP", url: "https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview" }
             ],
-            exercise: "Two intents live: 'what's in my pipeline' and 'what's overdue'. Both answered from FreshStack's real Notion data."
+            exercise: "Two intents live: 'what's in my pipeline' + 'what's overdue'. Both answered from real FreshStack Notion data. Populate skills/mcp-integration.md with anything learned."
           },
           {
             id: "l2-2",
-            title: "Lock the 5 v1 intents in writing — day 10 gate",
-            desc: "Before going further, document the 5 intents v1 will handle. Description, expected inputs, expected outputs, example phrasings. No additions after this.",
+            title: "Lock the 5 v1 intents — DO NOT delegate this to Claude Code",
+            desc: "Day 10 gate. Intent spec is product judgement, not code generation. Write it yourself. Each intent: description, expected inputs, expected outputs, example phrasings, tool calls involved. Bap confirms each is demo-able in 30 seconds.",
             hours: 3, week: 2, sprintEssential: true,
             resources: [
               { type: "INTERNAL", label: "CEO Command Bot — v1 intent set", url: "https://www.notion.so/344d7fcf5f0481d8bb63feb8c7d0f96c" }
             ],
-            exercise: "Intent spec in Notion. Bap confirms each is demo-able in 30 seconds. If not, rewrite."
+            exercise: "Intent spec in Notion, written by Lara, not Claude Code. Bap confirms each is demo-able in 30s. If any isn't, rewrite or drop. No additions after day 10."
           },
           {
             id: "l2-3",
-            title: "Calendar integration (Google Calendar or Outlook)",
-            desc: "Whichever FreshStack uses. OAuth flow is the hard part — expect a day of frustration. 'What's on my calendar today' and 'any conflicts tomorrow' both work.",
-            hours: 10, week: 2, sprintEssential: true,
+            title: "Direct Claude Code to build the Calendar OAuth + integration",
+            desc: "Prompt: Google or Outlook OAuth 2.0 flow, token storage in Supabase (encrypted — flag this), token refresh handling, read-only calendar scope. Security-sensitive. Review the token storage especially — Claude Code has been known to store tokens plaintext.",
+            hours: 8, week: 2, sprintEssential: true,
             resources: [
               { type: "READ", label: "OAuth 2.0 simplified", url: "https://aaronparecki.com/oauth-2-simplified/" },
               { type: "DOCS", label: "Google Calendar API quickstart", url: "https://developers.google.com/workspace/calendar/api/quickstart/nodejs" }
             ],
-            exercise: "OAuth flow completed, tokens stored in Supabase, calendar intent working end-to-end."
+            exercise: "OAuth flow completed, tokens stored encrypted, calendar intent working. Verify: open the Supabase table — you should see encrypted blobs, not JWTs. If you see JWTs, reject the code and redirect Claude Code. Populate skills/oauth-flows.md."
           },
           {
             id: "l2-4",
-            title: "Email integration — read-only for v1",
-            desc: "Same OAuth pattern as calendar. Read inbox, search urgent threads, summarise. Write actions (drafting replies) deferred to month 2.",
-            hours: 8, week: 2, sprintEssential: true,
+            title: "Direct Claude Code to build the Email read-only integration",
+            desc: "Same OAuth pattern as calendar. Read-only scope — important. If Claude Code suggests adding send/modify scopes 'for future use', reject. v1 is read-only. Scope creep in API permissions is a security risk.",
+            hours: 6, week: 2, sprintEssential: true,
             resources: [
               { type: "DOCS", label: "Gmail API quickstart", url: "https://developers.google.com/workspace/gmail/api/quickstart/nodejs" }
             ],
-            exercise: "'Any urgent emails' intent working. Returns short summary of top 3 unread threads marked important."
+            exercise: "'Any urgent emails' intent working. Returns top 3 unread important threads. Verify OAuth scope is read-only in the Google Cloud Console — not 'readonly + send for future flexibility'."
           },
           {
             id: "l2-5",
-            title: "Confirmation flow for one write action — the safety gate demo",
-            desc: "'Create a task for Bap to review the proposal.' Bot drafts the task, posts a Slack message with ✓ and ✗ buttons. Only creates the task on ✓. This one flow sells the product.",
-            hours: 8, week: 2, sprintEssential: true,
+            title: "Confirmation flow — Lara designs UX, Claude Code builds it",
+            desc: "Slack Block Kit with ✓/✗ buttons. UX design is yours — what does the message say, how is the action summarised, what happens on cancel. Claude Code writes the Block Kit JSON and handler logic.",
+            hours: 7, week: 2, sprintEssential: true,
             resources: [
-              { type: "DOCS", label: "Slack Block Kit — interactive buttons", url: "https://api.slack.com/block-kit/interactive-components" }
+              { type: "DOCS", label: "Slack Block Kit — interactive buttons", url: "https://api.slack.com/block-kit/interactive-components" },
+              { type: "TOOL", label: "Slack Block Kit Builder (UI design)", url: "https://app.slack.com/block-kit-builder" }
             ],
-            exercise: "End-to-end flow works. Record a 30-second screen capture — this is your demo footage."
+            exercise: "Design UX first (sketch on paper or Block Kit Builder). Then Claude Code implements. End-to-end works: draft → buttons → confirm → task in Notion. 30-second screen capture."
+          },
+          {
+            id: "l2-6",
+            title: "System prompts for the 5 intents — LARA ONLY",
+            desc: "This is NOT a Claude Code task. Production system prompts for tool-use systems need human judgement about Claude Bot's persona, tool-use decisions, failure modes, and tone. Claude Code will write mediocre prompts that demo-look-fine and break at the edges.",
+            hours: 10, week: 2, sprintEssential: true,
+            resources: [
+              { type: "DOCS", label: "Anthropic — Prompt engineering overview", url: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" },
+              { type: "DOCS", label: "Use XML tags to structure prompts", url: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags" }
+            ],
+            exercise: "Each of the 5 intents has a system prompt written by Lara. Tested 3-5 times with real FreshStack data. Version them — keep old prompts when you change them."
           }
         ]
       },
       {
         id: "l3",
         label: "// PHASE L3",
-        title: "Production hardening — reliability under real use",
+        title: "Production hardening — review discipline matters most here",
         time: "Week 3 · ~40 hours",
         week: 3,
-        objective: "The R3ACH lesson operationalised. Errors surface, retries work, writes are idempotent, and the system survives deliberate breakage. This week is the difference between 'it works when I test it' and 'it works at 3am.'",
+        objective: "Error handling, alerting, RLS, evals. Claude Code writes most of this. Your review discipline is critical — security code is where AI fails worst. This week separates 'works in dev' from 'works at 3am.'",
         modules: [
           {
             id: "l3-1",
-            title: "Error handling + retries + idempotency",
-            desc: "Wrap every API call in try/catch. Exponential backoff on transient failures. Idempotency keys on writes so retries don't create duplicates.",
-            hours: 8, week: 3, sprintEssential: true,
+            title: "Direct Claude Code to add error handling, retries, idempotency",
+            desc: "Prompt: wrap every external API call, exponential backoff with jitter on 5xx/429, idempotency keys on writes stored in Supabase. Review: is the retry cap sane? Is the backoff actually exponential? Are idempotency keys genuinely unique? Claude Code sometimes uses timestamps which collide.",
+            hours: 6, week: 3, sprintEssential: true,
             resources: [
               { type: "READ", label: "AWS — exponential backoff and jitter", url: "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/" },
               { type: "READ", label: "Stripe — idempotency in APIs", url: "https://stripe.com/blog/idempotency" }
             ],
-            exercise: "Deliberately break things: kill the Notion API mid-request, send the same write intent twice in 2 seconds, trigger a rate limit. System should recover cleanly in all 3 cases."
+            exercise: "Deliberately break: kill Notion mid-request, send same write twice in 2s, trigger rate limit. All 3 recover cleanly. Populate skills/error-handling.md."
           },
           {
             id: "l3-2",
-            title: "Sentry + Slack alerting — your v1 observability",
-            desc: "Sentry catches errors. Slack webhook posts critical ones to #freshstack-alerts. This is observability for v1 — enough to know when the bot is broken, not enterprise tracing.",
+            title: "Direct Claude Code to add Sentry + Slack alerting",
+            desc: "Prompt: Sentry for error capture, Slack incoming webhook for critical alerts to #freshstack-alerts, structured logging throughout. Review: are errors actually being captured? Is the alert threshold right (or will it spam you)? Test by deliberately breaking things.",
             hours: 4, week: 3, sprintEssential: true,
             resources: [
               { type: "DOCS", label: "Sentry for Node.js", url: "https://docs.sentry.io/platforms/javascript/guides/node/" },
               { type: "DOCS", label: "Slack incoming webhooks", url: "https://api.slack.com/messaging/webhooks" }
             ],
-            exercise: "Trigger 3 types of failure deliberately. All 3 appear in Slack within 10 seconds with enough context to debug without reproducing."
+            exercise: "Trigger 3 failure types deliberately. All 3 show in #freshstack-alerts within 10s with enough context to debug without reproducing."
           },
           {
             id: "l3-3",
-            title: "Multi-tenant foundations — RLS + encrypted credentials",
-            desc: "Build the multi-tenant pattern now even though you're the only tenant. Supabase RLS on every table. Encrypted credential storage via Supabase Vault. Client 2 doesn't require a rebuild.",
+            title: "Direct Claude Code to implement RLS — REVIEW EVERY POLICY",
+            desc: "RLS is where AI fails hardest and the failure is invisible. Claude Code writes policies that compile and seem to work but may not actually enforce isolation under all query shapes. Every policy gets manually tested with a second tenant.",
             hours: 10, week: 3, sprintEssential: true,
             resources: [
               { type: "DOCS", label: "Supabase Row Level Security", url: "https://supabase.com/docs/guides/database/postgres/row-level-security" },
-              { type: "DOCS", label: "Supabase Vault", url: "https://supabase.com/docs/guides/database/vault" }
+              { type: "DOCS", label: "Supabase Vault (credential encryption)", url: "https://supabase.com/docs/guides/database/vault" }
             ],
-            exercise: "Create a second test tenant. Write a test proving tenant A cannot read tenant B's credentials or conversation history under any query."
+            exercise: "Create tenant B in Supabase. Write a test that queries every table AS TENANT A trying to read tenant B's data. Every query returns empty/denied. If any leak exists, stop and redo the policy with Claude Code. Populate skills/supabase-multi-tenant.md."
           },
           {
             id: "l3-4",
-            title: "System prompt engineering for the 5 v1 intents",
-            desc: "Tighten each intent. XML tags, explicit tool descriptions, few-shot examples, explicit failure modes. Version the prompts — keep old ones when you change them.",
+            title: "System prompt engineering — second pass",
+            desc: "Another Lara-only task. Run each intent 5-10 times with real data, track inconsistencies, tighten prompts. Claude Code can help you draft variations but you decide which version ships.",
             hours: 8, week: 3, sprintEssential: true,
             resources: [
-              { type: "DOCS", label: "Use XML tags to structure prompts", url: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags" },
-              { type: "DOCS", label: "Anthropic prompt engineering overview", url: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" }
+              { type: "DOCS", label: "Anthropic — prompt engineering overview", url: "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" }
             ],
-            exercise: "Run each intent 3-5 times with real FreshStack data. Note inconsistencies. Fix prompts. Re-run until stable."
+            exercise: "Each intent now handles 10+ realistic variations of input consistently. Note the ones that still fail — they go into the eval set in L3-5."
           },
           {
             id: "l3-5",
-            title: "Basic eval set — 10-15 test cases",
-            desc: "Test cases that assert expected tool calls and response patterns for each intent. Pass rate becomes your ship-readiness metric. Full CI/CD eval gates deferred to month 2.",
+            title: "Direct Claude Code to build the eval harness + test cases",
+            desc: "Prompt: test runner that sends N intents to the bot, captures response + tool calls, compares against expected patterns, outputs pass/fail. 10-15 test cases — you write the cases (product judgement), Claude Code writes the runner.",
             hours: 6, week: 3, sprintEssential: true,
             resources: [
               { type: "DOCS", label: "Anthropic — Evaluations", url: "https://docs.claude.com/en/docs/build-with-claude/develop-tests" }
             ],
-            exercise: "Eval set written. Current pass rate measured. Anything under 90% gets fixed before week 4."
+            exercise: "Eval harness runs with one command. 10-15 test cases. Current pass rate measured. Anything under 90% gets fixed before week 4."
+          },
+          {
+            id: "l3-6",
+            title: "Security review — the gate before week 4",
+            desc: "Final security review of everything Claude Code wrote: credential storage, OAuth scopes, RLS policies, Slack signature verification, API rate limits. Block out 2 hours for this — it's not optional. Sign off in writing in CLAUDE.md.",
+            hours: 3, week: 3, sprintEssential: true,
+            resources: [
+              { type: "READ", label: "OWASP Top 10 (quick reference)", url: "https://owasp.org/www-project-top-ten/" }
+            ],
+            exercise: "Security checklist in CLAUDE.md: each item ticked or flagged. No unresolved flags going into week 4."
           }
         ]
       },
       {
         id: "l4",
         label: "// PHASE L4",
-        title: "Polish, demo, handover",
+        title: "Polish, demo, handover — Lara-heavy week",
         time: "Week 4 · ~40 hours",
         week: 4,
-        objective: "Use the bot as FreshStack's CEO. Capture demo footage. Document the system. Stop building, start polishing.",
+        objective: "Claude Code steps back. You dogfood, record the demo, write the runbook. This week is about polish and judgement, not code volume.",
         modules: [
           {
             id: "l4-1",
-            title: "Dogfood — use the bot daily",
-            desc: "You are the CEO. Use the bot every day as if you were a paying client. Log every annoyance. Fix them.",
+            title: "Dogfood — use the bot daily as FreshStack's CEO",
+            desc: "Not a Claude Code task. You use the bot. You feel the friction. You write down what's annoying. The 10% of issues that only appear in real use surface this week.",
             hours: 10, week: 4, sprintEssential: true,
             resources: [],
-            exercise: "Running 'annoyances' log. Each closed before day 30 or explicitly deferred to month 2 with a reason."
+            exercise: "Running annoyances log. Each closed before day 30 or explicitly deferred to month 2 with a reason."
           },
           {
             id: "l4-2",
-            title: "Record the demo video",
-            desc: "90-second screen recording. 3 intents including the confirmation flow. Clean audio. Anchors every month 2 outreach message.",
+            title: "Record the demo video — Lara's screen, Lara's data",
+            desc: "90-second screen recording. 3 intents including the confirmation flow. Real FreshStack Notion, real calendar, real inbox. Clean audio. Anchors every month 2 outreach message.",
             hours: 6, week: 4, sprintEssential: true,
             resources: [
               { type: "TOOL", label: "Loom (simple screen recording)", url: "https://loom.com" },
@@ -411,29 +502,37 @@ const LEARNING_PATH = {
           },
           {
             id: "l4-3",
-            title: "Handover doc + runbook",
-            desc: "If something breaks at 3am, what do you do? Write it down. Common failures, how to check logs, how to roll back, how to manually handle OAuth refresh when it expires.",
-            hours: 8, week: 4, sprintEssential: true,
+            title: "Direct Claude Code to draft the runbook — then rewrite it",
+            desc: "Claude Code drafts a runbook based on the repo. It'll be generic. You rewrite it with the specifics of how FreshStack handles incidents — who does what, how to check Railway, how to force-refresh OAuth, how to roll back a deploy. Bap reads it and if he can't follow it, rewrite.",
+            hours: 6, week: 4, sprintEssential: true,
             resources: [
-              { type: "INTERNAL", label: "FreshStack handover system (from March 2026)", url: "#" }
+              { type: "INTERNAL", label: "FreshStack handover system (March 2026)", url: "#" }
             ],
-            exercise: "Runbook written. Bap reads it. If he can't follow it step-by-step during a simulated incident, rewrite."
+            exercise: "Runbook written. Bap simulates an incident using only the runbook. If he gets stuck, rewrite the step he got stuck on."
           },
           {
             id: "l4-4",
-            title: "Lock v1 — no more changes",
-            desc: "Second pass on evals. Fix what's still failing. Then stop. Don't touch prompts, don't add intents, don't refactor. Month 2 is when scope can change again.",
+            title: "Lock v1 — CLAUDE.md gets frozen, tag the release",
+            desc: "Second pass on evals (Claude Code can help fix failures). Pass rate ≥95%. Update CLAUDE.md with 'v1 locked' note and the exact scope. Git tag v1.0.0. Railway pinned to the tag. Stop building.",
             hours: 6, week: 4, sprintEssential: true,
             resources: [],
-            exercise: "Eval pass rate at 95%+. Git tag v1.0.0. Railway deploy pinned to that tag."
+            exercise: "Eval pass rate ≥95%. git tag v1.0.0. CLAUDE.md updated with frozen v1 scope. Railway pinned."
           },
           {
             id: "l4-5",
-            title: "Buffer — something has gone wrong",
-            desc: "Week 4 always has a surprise. OAuth token expires, Railway hiccup, Notion schema change breaks an intent. Budget 10 hours you hope you don't need.",
+            title: "Buffer — something always goes wrong",
+            desc: "Budget 10 hours for unplanned work. OAuth token will expire. Railway will hiccup. Notion schema will change. If you don't need the time, draft month 2 outreach with Bap.",
             hours: 10, week: 4, sprintEssential: true,
             resources: [],
-            exercise: "If you don't use these hours, spend them drafting the first month 2 outreach message with Bap."
+            exercise: "If unused, first draft of month 2 outreach message written with Bap."
+          },
+          {
+            id: "l4-6",
+            title: "Populate all skill files with what you learned",
+            desc: "By end of week 4, every skill file in `skills/` has real learnings — not empty scaffolds. This is the repo's memory for month 2 and client 2. If you skip this, you'll re-learn everything next time.",
+            hours: 2, week: 4, sprintEssential: true,
+            resources: [],
+            exercise: "Every skill file has at least 3 real lessons from the sprint. Review each one — would Future You thank Past You for writing this?"
           }
         ]
       },
@@ -453,7 +552,7 @@ const LEARNING_PATH = {
             resources: [
               { type: "DOCS", label: "Claude model selection guide", url: "https://docs.claude.com/en/docs/about-claude/models/overview" }
             ],
-            exercise: "After 30 days of v1 usage, measure actual token spend per intent. Design the router from real data."
+            exercise: "After 30 days of v1 usage, measure actual token spend per intent. Design the router from real data. Direct Claude Code to implement once you know the rules."
           },
           {
             id: "l5-2",
@@ -463,7 +562,7 @@ const LEARNING_PATH = {
             resources: [
               { type: "DOCS", label: "MCP — Build a server", url: "https://modelcontextprotocol.io/docs/develop/build-server" }
             ],
-            exercise: "Build a GoHighLevel MCP server in month 3 when the first GHL client signs."
+            exercise: "Build a GoHighLevel MCP server in month 3 when the first GHL client signs. Direct Claude Code with a very tight prompt — MCP spec compliance matters and drift is easy."
           },
           {
             id: "l5-3",
@@ -494,6 +593,17 @@ const LEARNING_PATH = {
               { type: "READ", label: "Google SRE — incident response", url: "https://sre.google/sre-book/managing-incidents/" }
             ],
             exercise: "Write the one-page playbook when client 1 signs."
+          },
+          {
+            id: "l5-6",
+            title: "Deeper TypeScript fundamentals (when you have time)",
+            desc: "The sprint used Claude Code for most TS. Over time, fill in the gaps: generics, async patterns at depth, type-level programming. Makes you a better reviewer, not a faster shipper. Month 2-3 when there's breathing room.",
+            hours: 20, week: 0, sprintEssential: false,
+            resources: [
+              { type: "DOCS", label: "TypeScript handbook", url: "https://www.typescriptlang.org/docs/handbook/intro.html" },
+              { type: "COURSE", label: "Matt Pocock — Total TypeScript", url: "https://www.totaltypescript.com/" }
+            ],
+            exercise: "After v1 ships, read the TS handbook properly. Revisit code you wrote during sprint and identify places you'd write it differently."
           }
         ]
       }
@@ -508,17 +618,17 @@ const LEARNING_PATH = {
         title: "Shadow Lara's build — learn by watching",
         time: "Week 1 · ~25 hours",
         week: 1,
-        objective: "Fastest path to technical fluency: watch Lara build, ask questions in real time. Lara gets a rubber duck. You get a live tutor.",
+        objective: "Fastest path to technical fluency: watch Lara direct Claude Code, ask questions in real time. You'll learn more in 6 hours of pair time than 6 hours of docs. Bonus: you see exactly what Claude Code can and can't do, which matters in month 2 discovery calls when prospects ask 'how did you build it?'",
         modules: [
           {
             id: "b1-1",
-            title: "Architecture literacy — sit with Lara while she scaffolds",
-            desc: "Days 3-5 shadow Lara (in person or screen share) while she builds the scaffolding. Ask why every decision is being made. You'll absorb more in 6 hours than reading docs for 6.",
+            title: "Shadow Lara while she scaffolds (days 4-7)",
+            desc: "Lara is directing Claude Code on the foundation. You sit in. Ask why every decision is being made. Specifically watch: how Lara catches Claude Code's mistakes, when she accepts output vs redirects.",
             hours: 8, week: 1, sprintEssential: true,
             resources: [
               { type: "INTERNAL", label: "Architecture infographic", url: "#" }
             ],
-            exercise: "End of week 1, explain each of the 5 architecture layers in 30 seconds to Lara. She scores you. Redo until green."
+            exercise: "End of week 1, explain each of the 5 architecture layers in 30s to Lara. Also explain the 'Claude Code as senior dev, Lara as tech lead' model — you'll use this in month 2 when prospects ask about the build."
           },
           {
             id: "b1-2",
@@ -533,7 +643,7 @@ const LEARNING_PATH = {
           {
             id: "b1-3",
             title: "Security talking points — OAuth, encryption, data ownership",
-            desc: "The single most common objection from 50+ staff SMBs. Know what to say about OAuth, encryption, what happens if the contract ends. Back it with facts.",
+            desc: "The single most common objection from 50+ staff SMBs. Know what to say about OAuth, encryption, what happens if the contract ends. Back it with facts — and with the specific security review Lara does during the sprint.",
             hours: 6, week: 1, sprintEssential: true,
             resources: [
               { type: "INTERNAL", label: "CEO Bot — Prerequisites & IP boundary", url: "https://www.notion.so/344d7fcf5f0481d8bb63feb8c7d0f96c" },
@@ -544,7 +654,7 @@ const LEARNING_PATH = {
           {
             id: "b1-4",
             title: "Draft the moat sentence",
-            desc: "First draft of the moat sentence that month 2 outreach hangs off. It'll evolve — but draft now so you're iterating, not starting from zero in week 3.",
+            desc: "First draft of the moat sentence. Include the 'Claude Code lets us ship faster than competitors' angle if it's genuinely true by end of week 1 — if not, leave it out. No narrative claims without evidence.",
             hours: 4, week: 1, sprintEssential: true,
             resources: [
               { type: "INTERNAL", label: "Market Signal assessment", url: "https://www.notion.so/344d7fcf5f0481d8bb63feb8c7d0f96c" }
