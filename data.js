@@ -46,7 +46,7 @@ const LEARNING_PATH = {
             hours: 2, week: 1, sprintEssential: true,
             resources: [
               { type: "INTERNAL", label: "CEO Command Bot Notion page", url: "https://www.notion.so/344d7fcf5f0481d8bb63feb8c7d0f96c" },
-              { type: "INTERNAL", label: "Architecture infographic (SVG)", url: "#" }
+              { type: "INTERNAL", label: "Architecture infographic (SVG)", url: "./ceo-command-bot-architecture.svg" }
             ],
             exercise: "Without looking at the diagram, draw the 5 layers on paper and label what lives in each. Compare."
           },
@@ -638,7 +638,7 @@ const LEARNING_PATH = {
             desc: "Lara is directing Claude Code on the foundation. You sit in. Ask why every decision is being made. Specifically watch: how Lara catches Claude Code's mistakes, when she accepts output vs redirects.",
             hours: 8, week: 1, sprintEssential: true,
             resources: [
-              { type: "INTERNAL", label: "Architecture infographic", url: "#" }
+              { type: "INTERNAL", label: "Architecture infographic", url: "./ceo-command-bot-architecture.svg" }
             ],
             exercise: "End of week 1, explain each of the 5 architecture layers in 30s to Lara. Also explain the 'Claude Code as senior dev, Lara as tech lead' model — you'll use this in month 2 when prospects ask about the build."
           },

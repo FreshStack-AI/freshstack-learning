@@ -1,0 +1,399 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 2680" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0A0A0A"/>
+      <stop offset="100%" stop-color="#1C1C1E"/>
+    </linearGradient>
+    <linearGradient id="layerCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1C1C1E"/>
+      <stop offset="100%" stop-color="#151517"/>
+    </linearGradient>
+    <linearGradient id="accentPanel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3A3A3C"/>
+      <stop offset="100%" stop-color="#2A2A2C"/>
+    </linearGradient>
+    <linearGradient id="ownedHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C8C0B0" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#C8C0B0" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="phase2Panel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2A2A2C"/>
+      <stop offset="100%" stop-color="#1F1F21"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C8C0B0"/>
+    </marker>
+    <marker id="arrowWrite" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#F5F0E8"/>
+    </marker>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5"/>
+      <feColorMatrix values="0 0 0 0 0.78 0 0 0 0 0.75 0 0 0 0 0.69 0 0 0 0.04 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="2680" fill="url(#bg)"/>
+  <rect width="1600" height="2680" fill="url(#bg)" filter="url(#grain)" opacity="0.4"/>
+
+  <!-- HEADER -->
+  <text x="80" y="80" font-family="'DM Mono', monospace" font-size="14" fill="#8E8E93" letter-spacing="2">// FRESHSTACK ARCHITECTURE</text>
+  <text x="80" y="140" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="54" fill="#F5F0E8" letter-spacing="-1">CEO Command Bot</text>
+  <text x="80" y="178" font-family="'Space Grotesk', sans-serif" font-weight="400" font-size="22" fill="#8E8E93">Multi-tenant orchestration architecture · v2</text>
+
+  <g transform="translate(1080, 70)">
+    <text x="0" y="0" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" letter-spacing="1.5">// LEGEND</text>
+    <rect x="0" y="15" width="14" height="14" fill="#C8C0B0" opacity="0.15" stroke="#C8C0B0" stroke-width="1"/>
+    <text x="24" y="27" font-size="13" fill="#F5F0E8">FreshStack-owned (our IP)</text>
+    <rect x="260" y="15" width="14" height="14" fill="#3A3A3C" stroke="#8E8E93" stroke-width="1"/>
+    <text x="284" y="27" font-size="13" fill="#F5F0E8">Client-owned (their tools &amp; keys)</text>
+    <line x1="0" y1="55" x2="30" y2="55" stroke="#C8C0B0" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="40" y="60" font-size="13" fill="#F5F0E8">Primary request flow</text>
+    <line x1="260" y1="55" x2="290" y2="55" stroke="#F5F0E8" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrowWrite)"/>
+    <text x="300" y="60" font-size="13" fill="#F5F0E8">Write action (requires approval)</text>
+  </g>
+
+  <!-- LAYER 1: INTERFACE (y: 240, ends at 520) -->
+  <g transform="translate(80, 240)">
+    <text x="0" y="0" font-family="'DM Mono', monospace" font-size="12" fill="#8E8E93" letter-spacing="2">// LAYER 1</text>
+    <text x="0" y="30" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#F5F0E8">INTERFACE</text>
+    <text x="0" y="58" font-size="14" fill="#8E8E93">Where the CEO talks to the bot. One platform per engagement.</text>
+    <rect x="0" y="80" width="1440" height="200" rx="4" fill="url(#layerCard)" stroke="#3A3A3C" stroke-width="1"/>
+
+    <g transform="translate(40, 110)">
+      <rect x="0" y="0" width="300" height="150" rx="4" fill="#3A3A3C" stroke="#8E8E93" stroke-width="1" opacity="0.9"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" letter-spacing="1.5">// CLIENT CHOOSES ONE</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#F5F0E8">Messaging Platform</text>
+      <text x="20" y="95" font-size="15" fill="#F5F0E8">◆ Telegram</text>
+      <text x="20" y="118" font-size="15" fill="#F5F0E8">◆ Slack</text>
+      <text x="20" y="141" font-size="15" fill="#F5F0E8">◆ MS Teams</text>
+    </g>
+    <line x1="380" y1="185" x2="450" y2="185" stroke="#C8C0B0" stroke-width="2" marker-end="url(#arrow)"/>
+    <g transform="translate(460, 110)">
+      <rect x="0" y="0" width="320" height="150" rx="4" fill="url(#ownedHighlight)" stroke="#C8C0B0" stroke-width="1.5"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#C8C0B0" letter-spacing="1.5">// FRESHSTACK SERVICE</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#F5F0E8">Webhook Receiver</text>
+      <text x="20" y="90" font-size="13" fill="#8E8E93">Thin Node/Python endpoint.</text>
+      <text x="20" y="110" font-size="13" fill="#8E8E93">Accepts messages, forwards to</text>
+      <text x="20" y="130" font-size="13" fill="#8E8E93">orchestration, returns response.</text>
+    </g>
+    <g transform="translate(820, 110)">
+      <rect x="0" y="0" width="260" height="150" rx="4" fill="#3A3A3C" stroke="#8E8E93" stroke-width="1" opacity="0.9"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" letter-spacing="1.5">// INLINE UI</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#F5F0E8">Confirmation Buttons</text>
+      <text x="20" y="90" font-size="13" fill="#8E8E93">Reads auto-execute.</text>
+      <text x="20" y="110" font-size="13" fill="#8E8E93">Writes show ✓ / ✗ buttons</text>
+      <text x="20" y="130" font-size="13" fill="#8E8E93">for CEO approval.</text>
+    </g>
+    <g transform="translate(1120, 110)">
+      <rect x="0" y="0" width="280" height="150" rx="4" fill="#0A0A0A" stroke="#3A3A3C" stroke-width="1"/>
+      <text x="15" y="25" font-family="'DM Mono', monospace" font-size="10" fill="#8E8E93">CEO → bot</text>
+      <text x="15" y="48" font-size="12" fill="#F5F0E8">"what's overdue this week?"</text>
+      <line x1="15" y1="60" x2="265" y2="60" stroke="#3A3A3C" stroke-width="1"/>
+      <text x="15" y="80" font-family="'DM Mono', monospace" font-size="10" fill="#C8C0B0">bot → CEO</text>
+      <text x="15" y="100" font-size="11" fill="#F5F0E8">3 invoices overdue ($12.4K)</text>
+      <text x="15" y="118" font-size="11" fill="#F5F0E8">Send reminders?</text>
+      <rect x="15" y="125" width="50" height="20" rx="2" fill="#C8C0B0"/>
+      <text x="40" y="139" font-size="11" fill="#0A0A0A" text-anchor="middle" font-weight="600">Yes</text>
+      <rect x="72" y="125" width="50" height="20" rx="2" fill="none" stroke="#8E8E93"/>
+      <text x="97" y="139" font-size="11" fill="#8E8E93" text-anchor="middle">No</text>
+    </g>
+  </g>
+
+  <!-- LAYER 2: ORCHESTRATION (y: 600, ends at 1000) -->
+  <g transform="translate(80, 600)">
+    <text x="0" y="0" font-family="'DM Mono', monospace" font-size="12" fill="#C8C0B0" letter-spacing="2">// LAYER 2 · FRESHSTACK IP</text>
+    <text x="0" y="30" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#F5F0E8">ORCHESTRATION</text>
+    <text x="0" y="58" font-size="14" fill="#8E8E93">The brain. Multi-tenant. If the client churns, the bot goes silent.</text>
+    <rect x="0" y="80" width="1440" height="320" rx="4" fill="url(#ownedHighlight)" stroke="#C8C0B0" stroke-width="1.5"/>
+
+    <g transform="translate(40, 110)">
+      <rect x="0" y="0" width="360" height="270" rx="4" fill="url(#accentPanel)" stroke="#C8C0B0" stroke-width="1"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#C8C0B0" letter-spacing="1.5">// CORE SERVICE</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#F5F0E8">Orchestration App</text>
+      <text x="20" y="82" font-size="12" fill="#8E8E93">Node.js or Python · Railway/Render</text>
+      <line x1="20" y1="100" x2="340" y2="100" stroke="#3A3A3C" stroke-width="1"/>
+      <text x="20" y="125" font-size="13" fill="#F5F0E8" font-weight="600">Responsibilities:</text>
+      <text x="20" y="148" font-size="12" fill="#C8C0B0">• Route requests per tenant</text>
+      <text x="20" y="168" font-size="12" fill="#C8C0B0">• Load client config from Supabase</text>
+      <text x="20" y="188" font-size="12" fill="#C8C0B0">• Manage conversation history</text>
+      <text x="20" y="208" font-size="12" fill="#C8C0B0">• Apply multi-model routing rules</text>
+      <text x="20" y="228" font-size="12" fill="#C8C0B0">• Construct Claude API calls w/ tools</text>
+      <text x="20" y="248" font-size="12" fill="#C8C0B0">• Handle confirmation flow</text>
+    </g>
+
+    <g transform="translate(430, 110)">
+      <rect x="0" y="0" width="280" height="270" rx="4" fill="url(#accentPanel)" stroke="#C8C0B0" stroke-width="1"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#C8C0B0" letter-spacing="1.5">// STATE STORE</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#F5F0E8">Supabase</text>
+      <text x="20" y="82" font-size="12" fill="#8E8E93">Per-client config &amp; state</text>
+      <line x1="20" y1="100" x2="260" y2="100" stroke="#3A3A3C" stroke-width="1"/>
+      <text x="20" y="125" font-size="13" fill="#F5F0E8" font-weight="600">Stores:</text>
+      <text x="20" y="148" font-size="12" fill="#C8C0B0">• Client tool credentials</text>
+      <text x="20" y="168" font-size="12" fill="#C8C0B0">• API keys (encrypted)</text>
+      <text x="20" y="188" font-size="12" fill="#C8C0B0">• Per-client system prompt</text>
+      <text x="20" y="208" font-size="12" fill="#C8C0B0">• Tool definitions per tenant</text>
+      <text x="20" y="228" font-size="12" fill="#C8C0B0">• Conversation history</text>
+      <text x="20" y="248" font-size="12" fill="#C8C0B0">• Scheduled task definitions</text>
+    </g>
+
+    <g transform="translate(740, 110)">
+      <rect x="0" y="0" width="300" height="270" rx="4" fill="url(#accentPanel)" stroke="#C8C0B0" stroke-width="1"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#C8C0B0" letter-spacing="1.5">// ROUTING LOGIC</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#F5F0E8">Model Router</text>
+      <text x="20" y="82" font-size="12" fill="#8E8E93">Cost-optimised model selection</text>
+      <line x1="20" y1="100" x2="280" y2="100" stroke="#3A3A3C" stroke-width="1"/>
+      <text x="20" y="128" font-size="12" fill="#F5F0E8" font-weight="600">Haiku · simple lookups</text>
+      <rect x="20" y="135" width="196" height="10" fill="#C8C0B0"/>
+      <text x="222" y="144" font-size="11" fill="#8E8E93">~70%</text>
+      <text x="20" y="168" font-size="12" fill="#F5F0E8" font-weight="600">Sonnet · standard ops</text>
+      <rect x="20" y="175" width="56" height="10" fill="#C8C0B0" opacity="0.7"/>
+      <text x="82" y="184" font-size="11" fill="#8E8E93">~20%</text>
+      <text x="20" y="208" font-size="12" fill="#F5F0E8" font-weight="600">Opus · reasoning &amp; synthesis</text>
+      <rect x="20" y="215" width="28" height="10" fill="#C8C0B0" opacity="0.4"/>
+      <text x="54" y="224" font-size="11" fill="#8E8E93">~10%</text>
+      <text x="20" y="252" font-size="11" fill="#8E8E93" font-style="italic">Keeps client API spend low</text>
+    </g>
+
+    <g transform="translate(1070, 110)">
+      <rect x="0" y="0" width="330" height="270" rx="4" fill="url(#accentPanel)" stroke="#F5F0E8" stroke-width="1.5"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#F5F0E8" letter-spacing="1.5">// SAFETY GATE</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#F5F0E8">Confirmation Gateway</text>
+      <text x="20" y="82" font-size="12" fill="#8E8E93">Stops the bot doing damage</text>
+      <line x1="20" y1="100" x2="310" y2="100" stroke="#3A3A3C" stroke-width="1"/>
+      <text x="20" y="128" font-size="13" fill="#F5F0E8" font-weight="600">Read actions</text>
+      <text x="20" y="150" font-size="12" fill="#C8C0B0">Auto-execute. No confirmation.</text>
+      <text x="20" y="168" font-size="11" fill="#8E8E93" font-style="italic">"What's my pipeline?" → instant</text>
+      <line x1="20" y1="185" x2="310" y2="185" stroke="#3A3A3C" stroke-width="1" stroke-dasharray="2 2"/>
+      <text x="20" y="210" font-size="13" fill="#F5F0E8" font-weight="600">Write actions</text>
+      <text x="20" y="232" font-size="12" fill="#C8C0B0">Inline button approval required.</text>
+      <text x="20" y="250" font-size="11" fill="#8E8E93" font-style="italic">"Send the invoice" → waits for ✓</text>
+    </g>
+  </g>
+
+  <!-- LAYER 3: INTELLIGENCE (y: 1080, ends at 1360) -->
+  <g transform="translate(80, 1080)">
+    <text x="0" y="0" font-family="'DM Mono', monospace" font-size="12" fill="#8E8E93" letter-spacing="2">// LAYER 3</text>
+    <text x="0" y="30" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#F5F0E8">INTELLIGENCE</text>
+    <text x="0" y="58" font-size="14" fill="#8E8E93">Direct API access — not Managed Agents. We keep control of prompts, routing, logic.</text>
+    <rect x="0" y="80" width="1440" height="200" rx="4" fill="url(#layerCard)" stroke="#3A3A3C" stroke-width="1"/>
+
+    <g transform="translate(40, 110)">
+      <rect x="0" y="0" width="460" height="150" rx="4" fill="url(#accentPanel)" stroke="#8E8E93" stroke-width="1"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" letter-spacing="1.5">// PRIMARY · CLIENT-OWNED KEY</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#F5F0E8">Claude API</text>
+      <text x="20" y="82" font-size="13" fill="#8E8E93">Tool use · per-client system prompt · multi-model</text>
+      <line x1="20" y1="98" x2="440" y2="98" stroke="#3A3A3C" stroke-width="1"/>
+      <text x="20" y="120" font-size="12" fill="#C8C0B0">Client's Anthropic account. Client pays for tokens.</text>
+      <text x="20" y="138" font-size="12" fill="#C8C0B0">FreshStack manages prompts, tools, routing.</text>
+    </g>
+
+    <g transform="translate(520, 110)">
+      <rect x="0" y="0" width="420" height="150" rx="4" fill="url(#layerCard)" stroke="#3A3A3C" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" letter-spacing="1.5">// OPTIONAL · IF CLIENT PREFERS</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#F5F0E8">OpenAI API</text>
+      <text x="20" y="82" font-size="13" fill="#8E8E93">Alternative model provider</text>
+      <line x1="20" y1="98" x2="400" y2="98" stroke="#3A3A3C" stroke-width="1"/>
+      <text x="20" y="120" font-size="12" fill="#8E8E93">Supported but not default.</text>
+      <text x="20" y="138" font-size="12" fill="#8E8E93">FreshStack recommends Claude for tool use.</text>
+    </g>
+
+    <g transform="translate(960, 110)">
+      <rect x="0" y="0" width="440" height="150" rx="4" fill="url(#ownedHighlight)" stroke="#C8C0B0" stroke-width="1"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#C8C0B0" letter-spacing="1.5">// KEY DECISION</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#F5F0E8">Why not Managed Agents?</text>
+      <text x="20" y="90" font-size="13" fill="#C8C0B0">We build on the raw API so FreshStack keeps</text>
+      <text x="20" y="108" font-size="13" fill="#C8C0B0">full control of prompts, routing, execution</text>
+      <text x="20" y="126" font-size="13" fill="#C8C0B0">logic, and client data. Our IP, not theirs.</text>
+    </g>
+  </g>
+
+  <!-- LAYER 4: INTEGRATION (y: 1440, large — houses both v1 and Phase 2) -->
+  <g transform="translate(80, 1440)">
+    <text x="0" y="0" font-family="'DM Mono', monospace" font-size="12" fill="#8E8E93" letter-spacing="2">// LAYER 4</text>
+    <text x="0" y="30" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#F5F0E8">INTEGRATION</text>
+    <text x="0" y="58" font-size="14" fill="#8E8E93">MCP-first, REST-fallback. Each client platform is a modular add-on.</text>
+
+    <rect x="0" y="80" width="1440" height="800" rx="4" fill="url(#layerCard)" stroke="#3A3A3C" stroke-width="1"/>
+
+    <!-- Connection pattern banner -->
+    <g transform="translate(40, 110)">
+      <rect x="0" y="0" width="1360" height="60" rx="4" fill="url(#ownedHighlight)" stroke="#C8C0B0" stroke-width="1"/>
+      <text x="25" y="25" font-family="'DM Mono', monospace" font-size="11" fill="#C8C0B0" letter-spacing="1.5">// CONNECTION PATTERN</text>
+      <text x="25" y="48" font-size="14" fill="#F5F0E8">
+        <tspan font-weight="700">MCP server</tspan><tspan fill="#8E8E93"> if the tool supports it · </tspan><tspan font-weight="700">REST API</tspan><tspan fill="#8E8E93"> as fallback · </tspan><tspan font-weight="700">Minimum permissions</tspan><tspan fill="#8E8E93"> by default · </tspan><tspan font-weight="700">OAuth tokens</tspan><tspan fill="#8E8E93"> stored encrypted in Supabase</tspan>
+      </text>
+    </g>
+
+    <!-- V1 CORE BANNER -->
+    <g transform="translate(40, 195)">
+      <rect x="0" y="0" width="1360" height="44" rx="4" fill="url(#ownedHighlight)" stroke="#C8C0B0" stroke-width="1.5"/>
+      <text x="20" y="28" font-family="'DM Mono', monospace" font-size="12" fill="#C8C0B0" letter-spacing="2" font-weight="700">// V1 CORE · 3 TOOLS · INCLUDED IN BASE BUILD</text>
+      <text x="1340" y="28" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" text-anchor="end" letter-spacing="1.5">PICK 1 FROM EACH CATEGORY</text>
+    </g>
+
+    <!-- V1 TOOL CATEGORIES (3 cards) -->
+    <g transform="translate(40, 260)">
+      <!-- CRM / PM -->
+      <g>
+        <rect x="0" y="0" width="445" height="240" rx="4" fill="url(#accentPanel)" stroke="#C8C0B0" stroke-width="1.5"/>
+        <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#C8C0B0" letter-spacing="1.5">// V1 · CATEGORY 01</text>
+        <text x="20" y="62" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#F5F0E8">CRM / PM</text>
+        <line x1="20" y1="80" x2="425" y2="80" stroke="#3A3A3C" stroke-width="1"/>
+        <text x="20" y="108" font-size="14" fill="#C8C0B0">◆ Notion</text>
+        <text x="20" y="130" font-size="14" fill="#C8C0B0">◆ HubSpot</text>
+        <text x="20" y="152" font-size="14" fill="#C8C0B0">◆ GoHighLevel</text>
+        <text x="220" y="108" font-size="14" fill="#C8C0B0">◆ Monday.com</text>
+        <text x="220" y="130" font-size="14" fill="#C8C0B0">◆ Asana</text>
+        <text x="220" y="152" font-size="14" fill="#C8C0B0">◆ Airtable</text>
+        <text x="20" y="174" font-size="14" fill="#C8C0B0">◆ Pipedrive</text>
+        <text x="220" y="174" font-size="14" fill="#C8C0B0">◆ Salesforce</text>
+        <text x="20" y="210" font-size="11" fill="#8E8E93" font-style="italic">Pipeline · deals · tasks · projects</text>
+        <text x="20" y="225" font-size="11" fill="#8E8E93" font-style="italic">Milestones · notes · records</text>
+      </g>
+
+      <!-- EMAIL -->
+      <g transform="translate(470, 0)">
+        <rect x="0" y="0" width="445" height="240" rx="4" fill="url(#accentPanel)" stroke="#C8C0B0" stroke-width="1.5"/>
+        <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#C8C0B0" letter-spacing="1.5">// V1 · CATEGORY 02</text>
+        <text x="20" y="62" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#F5F0E8">Email</text>
+        <line x1="20" y1="80" x2="425" y2="80" stroke="#3A3A3C" stroke-width="1"/>
+        <text x="20" y="108" font-size="14" fill="#C8C0B0">◆ Gmail / Google Workspace</text>
+        <text x="20" y="130" font-size="14" fill="#C8C0B0">◆ Outlook / Microsoft 365</text>
+        <text x="20" y="152" font-size="14" fill="#C8C0B0">◆ Custom @domain (IMAP/SMTP)</text>
+        <text x="20" y="210" font-size="11" fill="#8E8E93" font-style="italic">Draft replies · search inbox</text>
+        <text x="20" y="225" font-size="11" fill="#8E8E93" font-style="italic">Flag priority · summarise threads</text>
+      </g>
+
+      <!-- CALENDAR -->
+      <g transform="translate(940, 0)">
+        <rect x="0" y="0" width="420" height="240" rx="4" fill="url(#accentPanel)" stroke="#C8C0B0" stroke-width="1.5"/>
+        <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#C8C0B0" letter-spacing="1.5">// V1 · CATEGORY 03</text>
+        <text x="20" y="62" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#F5F0E8">Calendar</text>
+        <line x1="20" y1="80" x2="400" y2="80" stroke="#3A3A3C" stroke-width="1"/>
+        <text x="20" y="108" font-size="14" fill="#C8C0B0">◆ Google Calendar</text>
+        <text x="20" y="130" font-size="14" fill="#C8C0B0">◆ Outlook Calendar</text>
+        <text x="20" y="152" font-size="14" fill="#C8C0B0">◆ Calendly (read-only)</text>
+        <text x="20" y="210" font-size="11" fill="#8E8E93" font-style="italic">Today's meetings · conflicts</text>
+        <text x="20" y="225" font-size="11" fill="#8E8E93" font-style="italic">Block time · reschedule</text>
+      </g>
+    </g>
+
+    <!-- Note strip: v1 pairing logic -->
+    <g transform="translate(40, 520)">
+      <rect x="0" y="0" width="1360" height="40" rx="4" fill="#0A0A0A" stroke="#3A3A3C" stroke-width="1"/>
+      <text x="20" y="26" font-size="13" fill="#8E8E93">
+        <tspan fill="#C8C0B0" font-weight="700">Note:</tspan>
+        <tspan> Email + Calendar typically pair (Google Workspace or Microsoft 365). V1 = 3 tools but usually 2 decisions — pick CRM + pick Google-or-Microsoft stack.</tspan>
+      </text>
+    </g>
+
+    <!-- PHASE 2 BANNER -->
+    <g transform="translate(40, 585)">
+      <rect x="0" y="0" width="1360" height="44" rx="4" fill="url(#layerCard)" stroke="#8E8E93" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="20" y="28" font-family="'DM Mono', monospace" font-size="12" fill="#8E8E93" letter-spacing="2" font-weight="700">// PHASE 2 EXPANSIONS · ADD-ON · $1K–$3K PER TOOL</text>
+      <text x="1340" y="28" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" text-anchor="end" letter-spacing="1.5">REQUIRES V1 DEPLOYMENT</text>
+    </g>
+
+    <!-- PHASE 2 CATEGORIES (5 cards in a row) -->
+    <g transform="translate(40, 650)">
+      <!-- E-commerce -->
+      <g>
+        <rect x="0" y="0" width="260" height="210" rx="4" fill="url(#phase2Panel)" stroke="#8E8E93" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="15" y="26" font-family="'DM Mono', monospace" font-size="10" fill="#8E8E93" letter-spacing="1.5">// P2 · PRIORITY 01</text>
+        <text x="15" y="55" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#F5F0E8">E-commerce</text>
+        <line x1="15" y1="70" x2="245" y2="70" stroke="#3A3A3C" stroke-width="1"/>
+        <text x="15" y="93" font-size="12" fill="#C8C0B0">◆ Shopify</text>
+        <text x="15" y="113" font-size="12" fill="#C8C0B0">◆ WooCommerce</text>
+        <text x="15" y="133" font-size="12" fill="#C8C0B0">◆ Amazon Seller Central</text>
+        <text x="15" y="175" font-size="10" fill="#8E8E93" font-style="italic">Orders · revenue · inventory</text>
+        <text x="15" y="190" font-size="10" fill="#8E8E93" font-style="italic">Top SKUs · refund rate</text>
+      </g>
+
+      <!-- Marketing / Ads -->
+      <g transform="translate(275, 0)">
+        <rect x="0" y="0" width="260" height="210" rx="4" fill="url(#phase2Panel)" stroke="#8E8E93" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="15" y="26" font-family="'DM Mono', monospace" font-size="10" fill="#8E8E93" letter-spacing="1.5">// P2 · PRIORITY 02</text>
+        <text x="15" y="55" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#F5F0E8">Marketing / Ads</text>
+        <line x1="15" y1="70" x2="245" y2="70" stroke="#3A3A3C" stroke-width="1"/>
+        <text x="15" y="93" font-size="12" fill="#C8C0B0">◆ Meta Ads</text>
+        <text x="15" y="113" font-size="12" fill="#C8C0B0">◆ Google Ads</text>
+        <text x="15" y="133" font-size="12" fill="#C8C0B0">◆ Klaviyo · Mailchimp</text>
+        <text x="15" y="153" font-size="12" fill="#C8C0B0">◆ LinkedIn Ads</text>
+        <text x="15" y="175" font-size="10" fill="#8E8E93" font-style="italic">Campaign perf · CPA trend</text>
+        <text x="15" y="190" font-size="10" fill="#8E8E93" font-style="italic">Spend vs budget · email rates</text>
+      </g>
+
+      <!-- Support -->
+      <g transform="translate(550, 0)">
+        <rect x="0" y="0" width="260" height="210" rx="4" fill="url(#phase2Panel)" stroke="#8E8E93" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="15" y="26" font-family="'DM Mono', monospace" font-size="10" fill="#8E8E93" letter-spacing="1.5">// P2 · PRIORITY 03</text>
+        <text x="15" y="55" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#F5F0E8">Support / Help Desk</text>
+        <line x1="15" y1="70" x2="245" y2="70" stroke="#3A3A3C" stroke-width="1"/>
+        <text x="15" y="93" font-size="12" fill="#C8C0B0">◆ Intercom</text>
+        <text x="15" y="113" font-size="12" fill="#C8C0B0">◆ Zendesk</text>
+        <text x="15" y="133" font-size="12" fill="#C8C0B0">◆ Front</text>
+        <text x="15" y="153" font-size="12" fill="#C8C0B0">◆ HubSpot Service</text>
+        <text x="15" y="175" font-size="10" fill="#8E8E93" font-style="italic">Open tickets · response time</text>
+        <text x="15" y="190" font-size="10" fill="#8E8E93" font-style="italic">CSAT · priority queue</text>
+      </g>
+
+      <!-- HR -->
+      <g transform="translate(825, 0)">
+        <rect x="0" y="0" width="260" height="210" rx="4" fill="url(#phase2Panel)" stroke="#8E8E93" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="15" y="26" font-family="'DM Mono', monospace" font-size="10" fill="#8E8E93" letter-spacing="1.5">// P2 · PRIORITY 04</text>
+        <text x="15" y="55" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#F5F0E8">HR / People</text>
+        <line x1="15" y1="70" x2="245" y2="70" stroke="#3A3A3C" stroke-width="1"/>
+        <text x="15" y="93" font-size="12" fill="#C8C0B0">◆ Gusto</text>
+        <text x="15" y="113" font-size="12" fill="#C8C0B0">◆ BambooHR</text>
+        <text x="15" y="133" font-size="12" fill="#C8C0B0">◆ Deel</text>
+        <text x="15" y="153" font-size="12" fill="#C8C0B0">◆ Rippling</text>
+        <text x="15" y="175" font-size="10" fill="#8E8E93" font-style="italic">Leave this week · expenses</text>
+        <text x="15" y="190" font-size="10" fill="#8E8E93" font-style="italic">Headcount · payroll dates</text>
+      </g>
+
+      <!-- Social -->
+      <g transform="translate(1100, 0)">
+        <rect x="0" y="0" width="260" height="210" rx="4" fill="url(#phase2Panel)" stroke="#8E8E93" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="15" y="26" font-family="'DM Mono', monospace" font-size="10" fill="#8E8E93" letter-spacing="1.5">// P2 · PRIORITY 05</text>
+        <text x="15" y="55" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" fill="#F5F0E8">Social Media</text>
+        <line x1="15" y1="70" x2="245" y2="70" stroke="#3A3A3C" stroke-width="1"/>
+        <text x="15" y="93" font-size="12" fill="#C8C0B0">◆ Buffer</text>
+        <text x="15" y="113" font-size="12" fill="#C8C0B0">◆ Hootsuite</text>
+        <text x="15" y="133" font-size="12" fill="#C8C0B0">◆ Direct platform APIs</text>
+        <text x="15" y="175" font-size="10" fill="#8E8E93" font-style="italic">Scheduled posts · engagement</text>
+        <text x="15" y="190" font-size="10" fill="#8E8E93" font-style="italic">Approval queue · this week</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- LAYER 5: INFRASTRUCTURE (y: 2400, ends at 2680) -->
+  <g transform="translate(80, 2400)">
+    <text x="0" y="0" font-family="'DM Mono', monospace" font-size="12" fill="#8E8E93" letter-spacing="2">// LAYER 5</text>
+    <text x="0" y="30" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#F5F0E8">INFRASTRUCTURE</text>
+    <text x="0" y="58" font-size="14" fill="#8E8E93">Where Layer 2 actually runs. Multi-tenant — one deployment serves all clients.</text>
+    <rect x="0" y="80" width="1440" height="180" rx="4" fill="url(#layerCard)" stroke="#3A3A3C" stroke-width="1"/>
+
+    <g transform="translate(40, 110)">
+      <rect x="0" y="0" width="440" height="130" rx="4" fill="url(#accentPanel)" stroke="#8E8E93" stroke-width="1"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" letter-spacing="1.5">// HOSTING</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#F5F0E8">Railway / Render</text>
+      <text x="20" y="90" font-size="13" fill="#C8C0B0">Hosts the orchestration service.</text>
+      <text x="20" y="110" font-size="13" fill="#C8C0B0">Auto-scaling, managed deploys.</text>
+    </g>
+    <g transform="translate(500, 110)">
+      <rect x="0" y="0" width="440" height="130" rx="4" fill="url(#accentPanel)" stroke="#8E8E93" stroke-width="1"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" letter-spacing="1.5">// SCHEDULER</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#F5F0E8">Cron / Scheduled Jobs</text>
+      <text x="20" y="90" font-size="13" fill="#C8C0B0">Runs proactive tasks: morning briefs,</text>
+      <text x="20" y="110" font-size="13" fill="#C8C0B0">invoice chases, weekly summaries.</text>
+    </g>
+    <g transform="translate(960, 110)">
+      <rect x="0" y="0" width="440" height="130" rx="4" fill="url(#accentPanel)" stroke="#8E8E93" stroke-width="1"/>
+      <text x="20" y="30" font-family="'DM Mono', monospace" font-size="11" fill="#8E8E93" letter-spacing="1.5">// OBSERVABILITY</text>
+      <text x="20" y="60" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#F5F0E8">Logging &amp; Alerts</text>
+      <text x="20" y="90" font-size="13" fill="#C8C0B0">Error capture · retry logic ·</text>
+      <text x="20" y="110" font-size="13" fill="#C8C0B0">centralised alerting (lesson from R3ACH).</text>
+    </g>
+  </g>
+</svg>
